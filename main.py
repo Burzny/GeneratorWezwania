@@ -22,7 +22,7 @@ class LoginWindow(QWidget):
         quit_btn.move(600, 650)
         quit_btn.clicked.connect(QApplication.instance().quit)
 
-# _____ GENEROWANIE PLIKU _____
+# _____ Generating file _____
 
 
         def gen_docx(self):
@@ -32,7 +32,6 @@ class LoginWindow(QWidget):
             address_cd = address_cd_qline.text()
             in_name_of = in_name_of_qline.text()
             debt_sum = debt_sum_qline.text()
-            # number_of_debts = int(number_of_debts_qline.text())
             number_of_debts = int(Qbox1.currentText())
 
 
@@ -54,29 +53,17 @@ class LoginWindow(QWidget):
             doc.paragraphs[17].runs[0].text = account_NO
 
             for i in range(0, int(number_of_debts)):
-            # i = 0
-            # while i < int(number_of_debts):
 
                 para = doc.paragraphs[14]
                 inverted_i = int(number_of_debts) - i - 1
                 new_para = "       " + str(inverted_i + 1) + ". Kwoty " + str(amount[inverted_i]) + " od dnia " + str(debt_date[inverted_i]) + " od dnia zapłaty (" + str(doc_name[inverted_i]) + "),"
                 prev_para = para.insert_paragraph_before(str(new_para))
-                # i += 1
-
-
             doc.save("Wezwanie do zapłaty - " + name + " " + date + ".docx")
-
-
         gen_btn = QPushButton("Generuj ", self)
         gen_btn.move(50, 550)
         gen_btn.clicked.connect(gen_docx)
-
-
-
-
-
-# _____ POLA TEKSTOWE _____
-
+        
+# _____ Text fields _____
         date_qline = QLineEdit("Data", self)
         date_qline.setFixedWidth(300)
         date_qline.move(50, 100)
@@ -105,8 +92,6 @@ class LoginWindow(QWidget):
         number_of_debts_qline.setFixedWidth(100)
         number_of_debts_qline.move(50, 260)
 
-# Tutaj się bawię z ComboBoxem
-
         Qbox1 = QComboBox(self)
         Qbox1.addItem('1')
         Qbox1.addItem('2')
@@ -120,8 +105,6 @@ class LoginWindow(QWidget):
         Qbox1.addItem('10')
         Qbox1.setFixedWidth(50)
         Qbox1.move(150, 260)
-
-
 
         amount1_qline = QLineEdit("Kwota", self)
         amount1_qline.setFixedWidth(300)
@@ -227,7 +210,7 @@ class LoginWindow(QWidget):
         account_NO_qline.setFixedWidth(500)
         account_NO_qline.move(50, 500)
 
-# _____ Właściwości okna _____
+# _____ Window properties _____
 
         self.setFixedSize(700, 700)
         self.setWindowTitle("Generator Wezwania do Zapłaty - by MM")
